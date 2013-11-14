@@ -1,23 +1,19 @@
-# WordPress Canvas Gallery #
+# WordPress Canvas Widgets #
 
 **Contributors:** cbaldelomar  
 **Donate link:** http://webplantmedia.com/pay-now/  
-**Tags:** masonry gallery, pinterest style gallery, pinterest gallery, gallery slider, slider gallery, carousel gallery, carousel, slider  
+**Tags:** wordpress canvas widgets, pinterest widget, about me widget, image widget  
 **Requires at least:** 3.7  
 **Tested up to:** 3.7.1  
 **Stable tag:** trunk  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
-Extend WordPress galleries to display masonry gallery, carousel gallery, and slider gallery
+Add much needed widgets to your blog. Pinterest Widget, About Me Widget, Image Widget.
 
 ## Description ##
 
-See the galleries in action.
-
-1. [WordPress Canvas Galleries](http://wordpresscanvas.com/features/gallery/)
-2. [WordPress Canvas Slider & Carousel](http://wordpresscanvas.com/features/gallery/slider-carousel/)
-3. [WordPress Canvas Gallery Columns](http://wordpresscanvas.com/features/gallery/gallery-columns/)
+See the widgets in action at [WordPress Canvas Widgets](http://wordpresscanvas.com/features/widgets/wordpress-canvas-widgets/)
 
 ### Professional Support
 
@@ -42,7 +38,7 @@ Yes, I do accept donations.  If you want to buy me a sandwich or something, you 
 
 ### How do I use the shortcodes?
 
-Insert a gallery through your dashboard. You will see extra dropdown settings when configuring your gallery
+Go to your widget Dashboard and look for widgets begining with title 'WordPress Canvas'.
 
 ## Changelog ##
 
