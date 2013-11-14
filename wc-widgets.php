@@ -12,10 +12,9 @@ License: GPLv2 or later
 define( 'WC_WIDGETS_VERSION', '1.1' );
 define( 'WC_WIDGETS_PREFIX', 'wc_widgets_' );
 define( '_WC_WIDGETS_PREFIX', '_wc_widgets_' );
-define( 'WC_WIDGETS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 global $wc_widgets_options;
 
-require_once( dirname(__FILE__) . '/includes/functions.php' ); // Adds basic filters and actions
+// require_once( dirname(__FILE__) . '/includes/functions.php' ); // Adds basic filters and actions
 require_once( dirname(__FILE__) . '/includes/scripts.php' ); // Adds plugin JS and CSS
 require_once( dirname(__FILE__) . '/includes/widgets.php' ); // include any widgets
