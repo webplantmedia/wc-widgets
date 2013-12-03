@@ -42,6 +42,10 @@ Go to your widget Dashboard and look for widgets begining with title 'WordPress 
 
 == Changelog ==
 
+### Version 1.2
+
+* Allow html in caption or description
+
 ### Version 1.1
 
 * Plugin released.  Everything is new!
