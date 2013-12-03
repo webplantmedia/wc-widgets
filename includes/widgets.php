@@ -148,8 +148,18 @@ class WC_Widgets_About_Me_Widget extends WP_Widget {
 				echo '</a>';
 		}
 
+		$allowed_html = array(
+			'a' => array(
+				'href' => array(),
+				'title' => array(),
+				'target' => array(),
+			),
+			'br' => array(),
+			'em' => array(),
+			'strong' => array(),
+		);
 		if ( !empty( $instance['description'] ) )
-			echo '<p class="sidebar-caption">'.esc_html( $instance['description'] ).'</p>';
+			echo '<p class="sidebar-caption">'.wp_kses( $instance['description'], $allowed_html ).'</p>';
 
 		echo $args['after_widget'];
 	}
@@ -157,7 +167,7 @@ class WC_Widgets_About_Me_Widget extends WP_Widget {
 	function update( $new_instance, $old_instance ) {
 		$instance['title'] = strip_tags( stripslashes($new_instance['title']) );
 		$instance['image'] = esc_url_raw( $new_instance['image'] );
-		$instance['description'] = strip_tags( stripslashes($new_instance['description']) );
+		$instance['description'] = stripslashes( $new_instance['description'] );
 		$instance['style'] = strip_tags( $new_instance['style'] );
 		$instance['url'] = esc_url_raw( $new_instance['url'] );
 		return $instance;
@@ -240,10 +250,22 @@ class WC_Widgets_Image_Widget extends WP_Widget {
 			//if ( '' != $instance['img_height'] )
 				//$output .= 'height="' . esc_attr( $instance['img_height'] ) .'" ';
 			$output .= '/>';
+
 			if ( '' != $instance['link'] )
-		$output = '<a class="thumbnail-link image-hover" href="' . esc_attr( $instance['link'] ) . '">' . $output . '</a>';
+				$output = '<a class="thumbnail-link image-hover" href="' . esc_attr( $instance['link'] ) . '">' . $output . '</a>';
+
+			$allowed_html = array(
+				'a' => array(
+					'href' => array(),
+					'title' => array(),
+					'target' => array(),
+				),
+				'br' => array(),
+				'em' => array(),
+				'strong' => array(),
+			);
 			if ( '' != $instance['caption'] )
-				$output = $output . '<p class="sidebar-caption">' . esc_html( $instance['caption'] ) . '</p>';
+				$output = $output . '<p class="sidebar-caption">' . wp_kses( $instance['caption'], $allowed_html ) . '</p>';
 
 			echo '<div class="wc-widgets-image-container">' . do_shortcode( $output ) . '</div>';
 		}
@@ -258,7 +280,7 @@ class WC_Widgets_Image_Widget extends WP_Widget {
 		$instance['img_url']	= esc_url( $new_instance['img_url'], null, 'display' );
 		$instance['alt_text']	= strip_tags( $new_instance['alt_text'] );
 		$instance['img_title']	= strip_tags( $new_instance['img_title'] );
-		$instance['caption']	= strip_tags( $new_instance['caption'] );
+		$instance['caption']	= $new_instance['caption'];
 		//$instance['img_width']  = absint( $new_instance['img_width'] );
 		//$instance['img_height'] = absint( $new_instance['img_height'] );
 		$instance['link']		= esc_url( $new_instance['link'], null, 'display' );
