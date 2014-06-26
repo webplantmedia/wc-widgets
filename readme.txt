@@ -1,7 +1,7 @@
-=== WordPress Canvas Widgets ===
+=== WP Canvas - Widgets ===
 
 Contributors: cbaldelomar
-Donate link: http://webplantmedia.com/pay-now/
+Donate link: http://webplantmedia.com/donate/
 Tags: wordpress canvas widgets, pinterest widget, about me widget, image widget
 Requires at least: 3.7
 Tested up to: 3.7.1
@@ -13,11 +13,11 @@ Add much needed widgets to your blog. Pinterest Widget, About Me Widget, Image W
 
 == Description ==
 
-See the widgets in action at [WordPress Canvas Widgets](http://wordpresscanvas.com/features/widgets/wordpress-canvas-widgets/)
+See the widgets in action at [WP Canvas - Widgets](http://webplantmedia.com/starter-themes/wordpresscanvas/features/widgets/wordpress-canvas-widgets/)
 
 ### Professional Support
 
-If you need professional plugin support from me, the plugin author, you can contact me at [WordPress Canvas](http://wordpresscanvas.com/).
+If you need professional plugin support from me, the plugin author, you can contact me at [WP Canvas](http://webplantmedia.com/starter-themes/wordpresscanvas/).
 
 ### Plugin Development
 
@@ -41,6 +41,10 @@ Yes, I do accept donations.  If you want to buy me a sandwich or something, you 
 Go to your widget Dashboard and look for widgets begining with title 'WordPress Canvas'.
 
 == Changelog ==
+
+### Version 1.3
+
+* Updated Readme info
 
 ### Version 1.2
 
