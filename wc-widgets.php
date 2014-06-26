@@ -5,11 +5,11 @@ Plugin URI: http://webplantmedia.com/starter-themes/wordpresscanvas/features/wid
 Description: Add much needed widgets to your blog. Pinterest Widget, About Me Widget, Image Widget.
 Author: Chris Baldelomar
 Author URI: http://wordpresscanvas.com/
-Version: 1.3
+Version: 1.4
 License: GPLv2 or later
 */
 
-define( 'WC_WIDGETS_VERSION', '1.3' );
+define( 'WC_WIDGETS_VERSION', '1.4' );
 define( 'WC_WIDGETS_PREFIX', 'wc_widgets_' );
 define( '_WC_WIDGETS_PREFIX', '_wc_widgets_' );
 
