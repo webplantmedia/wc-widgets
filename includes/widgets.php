@@ -39,7 +39,7 @@ add_action('widgets_init', 'wc_widgets_register_widgets');
 class WC_Widgets_Pinterest_Widget extends WP_Widget {
 	function __construct() {
 		$widget_ops = array( 'description' => __('Add your latest pins form Pinterest to your sidebar.') );
-		parent::__construct( 'wordpresscanvas_pinterest', __('WordPress Canvas - Pinterest Widget'), $widget_ops );
+		parent::__construct( 'wordpresscanvas_pinterest', __('WP Canvas - Pinterest Widget'), $widget_ops );
 	}
 
 	function widget($args, $instance) {
@@ -121,7 +121,7 @@ class WC_Widgets_Pinterest_Widget extends WP_Widget {
 class WC_Widgets_About_Me_Widget extends WP_Widget {
 	function __construct() {
 		$widget_ops = array( 'description' => __('Add and customize your "About Me" information.') );
-		parent::__construct( 'wordpresscanvas_about_me', __('WordPress Canvas - About Me'), $widget_ops );
+		parent::__construct( 'wordpresscanvas_about_me', __('WP Canvas - About Me'), $widget_ops );
 	}
 
 	function widget($args, $instance) {
@@ -191,9 +191,9 @@ class WC_Widgets_About_Me_Widget extends WP_Widget {
 		</p>
 		<div class="wc-widgets-image-field">
 			<input class="widefat" id="<?php echo $this->get_field_id( 'image' ); ?>" name="<?php echo $this->get_field_name( 'image' ); ?>" type="text" value="<?php echo $image; ?>" />
-			<a class="wc-widgets-image-upload button inline-button" data-target="#<?php echo $this->get_field_id( 'image' ); ?>" data-preview=".wc-preview-image" data-frame="select" data-state="wc_widgets_insert_single" data-fetch="url" data-title="Insert Image" data-button="Insert" data-class="media-frame wc-custom-uploader" title="Add Media"><span class="wp-media-buttons-icon"></span> Add Media</a>
-			<a class="button wc-delete-image" data-target="#<?php echo $this->get_field_id( 'image' ); ?>" data-preview=".wc-preview-image">Delete</a>
-			<div class="wc-preview-image"<?php echo $imagestyle; ?>><img src="<?php echo esc_attr($image); ?>" /></div>
+			<a class="wc-widgets-image-upload button inline-button" data-target="#<?php echo $this->get_field_id( 'image' ); ?>" data-preview=".wc-widgets-preview-image" data-frame="select" data-state="wc_widgets_insert_single" data-fetch="url" data-title="Insert Image" data-button="Insert" data-class="media-frame wc-widgets-custom-uploader" title="Add Media">Add Media</a>
+			<a class="button wc-widgets-delete-image" data-target="#<?php echo $this->get_field_id( 'image' ); ?>" data-preview=".wc-widgets-preview-image">Delete</a>
+			<div class="wc-widgets-preview-image"<?php echo $imagestyle; ?>><img src="<?php echo esc_attr($image); ?>" /></div>
 		</div>
 		<p>
 			<label for="<?php echo $this->get_field_id('description'); ?>"><?php _e('Description:') ?></label>
@@ -225,7 +225,7 @@ class WC_Widgets_Image_Widget extends WP_Widget {
 	function WC_Widgets_Image_Widget() {
 		$widget_ops = array( 'classname' => 'widget_image', 'description' => __( "Display an image in your sidebar", 'wc_widgets' ) );
 		$control_ops = array( 'width' => 400 );
-		$this->WP_Widget( 'image', __( 'WordPress Canvas - Image', 'wc_widgets' ), $widget_ops, $control_ops );
+		$this->WP_Widget( 'image', __( 'WP Canvas - Image', 'wc_widgets' ), $widget_ops, $control_ops );
 	}
 
 	function widget( $args, $instance ) {
@@ -337,9 +337,9 @@ class WC_Widgets_Image_Widget extends WP_Widget {
 			</label></p>
 			<div class="wc-widgets-image-field">
 				<input class="widefat" id="'.$this->get_field_id( 'img_url' ).'" name="'.$this->get_field_name( 'img_url' ).'" type="text" value="'.$img_url.'" />
-				<a class="wc-widgets-image-upload button inline-button" data-target="#'.$this->get_field_id( 'img_url' ).'" data-preview=".wc-preview-image" data-frame="select" data-state="wc_widgets_insert_single" data-fetch="url" data-title="Insert Image" data-button="Insert" data-class="media-frame wc-custom-uploader" title="Add Media"><span class="wp-media-buttons-icon"></span> Add Media</a>
-				<a class="button wc-delete-image" data-target="#'.$this->get_field_id( 'img_url' ).'" data-preview=".wc-preview-image">Delete</a>
-				<div class="wc-preview-image"'.$imagestyle.'><img src="'.esc_attr($img_url).'" /></div>
+				<a class="wc-widgets-image-upload button inline-button" data-target="#'.$this->get_field_id( 'img_url' ).'" data-preview=".wc-widgets-preview-image" data-frame="select" data-state="wc_widgets_insert_single" data-fetch="url" data-title="Insert Image" data-button="Insert" data-class="media-frame wc-widgets-custom-uploader" title="Add Media">Add Media</a>
+				<a class="button wc-widgets-delete-image" data-target="#'.$this->get_field_id( 'img_url' ).'" data-preview=".wc-widgets-preview-image">Delete</a>
+				<div class="wc-widgets-preview-image"'.$imagestyle.'><img src="'.esc_attr($img_url).'" /></div>
 			</div>
 			<p><label for="' . $this->get_field_id( 'alt_text' ) . '">' . esc_html__( 'Alternate text:', 'wc_widgets' ) . '  <a href="http://support.wordpress.com/widgets/image-widget/#image-widget-alt-text" target="_blank">( ? )</a>
 			<input class="widefat" id="' . $this->get_field_id( 'alt_text' ) . '" name="' . $this->get_field_name( 'alt_text' ) . '" type="text" value="' . $alt_text . '" />
