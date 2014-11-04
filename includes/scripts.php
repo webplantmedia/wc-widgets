@@ -27,6 +27,7 @@ function wc_widgets_enqueue_admin_scripts() {
 		wp_register_style( 'wc-widgets-style', plugin_dir_url( __FILE__ ) . 'css/admin.css', array(), WC_WIDGETS_VERSION, 'all' );
 		wp_enqueue_style( 'wc-widgets-style' );
 
+		wp_enqueue_media();
 		wp_register_script( 'wc-widgets-admin-js', plugin_dir_url( __FILE__ ) . 'js/admin.js', array ( 'jquery' ), WC_WIDGETS_VERSION, true );
 		wp_enqueue_script( 'wc-widgets-admin-js' );
 	}
