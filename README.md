@@ -42,6 +42,10 @@ Go to your widget Dashboard and look for widgets begining with title 'WordPress 
 
 ## Changelog ##
 
+### Version 1.5
+
+* Fixed bug with Add Image button not working on About Me Widget
+
 ### Version 1.4
 
 * Fixed bug when trying to delete image
