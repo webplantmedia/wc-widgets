@@ -222,10 +222,10 @@ class WC_Widgets_About_Me_Widget extends WP_Widget {
  */
 class WC_Widgets_Image_Widget extends WP_Widget {
 
-	function WC_Widgets_Image_Widget() {
-		$widget_ops = array( 'classname' => 'widget_image', 'description' => __( "Display an image in your sidebar", 'wc_widgets' ) );
+	function __construct() {
+		$widget_ops = array( 'classname' => 'widget_image', 'description' => __('Add and customize your "About Me" information.') );
 		$control_ops = array( 'width' => 400 );
-		$this->WP_Widget( 'image', __( 'WP Canvas - Image', 'wc_widgets' ), $widget_ops, $control_ops );
+		parent::__construct( 'image', __('WP Canvas - Image', 'wc_widgets' ), $widget_ops, $control_ops );
 	}
 
 	function widget( $args, $instance ) {
