@@ -1,6 +1,9 @@
 /**
- * WC Widgets Media Settings
+ * @author Chris Baldelomar
+ * @website http://webplantmedia.com/
  */
+
+
 (function($) {
 	"use strict";
 
@@ -21,8 +24,7 @@
 			});
 			
 			
-		if(options.state === 'gallery-library' && id_array.length &&  !isNaN(parseInt(id_array[0],10)))
-		{
+		if(options.state === 'gallery-library' && id_array.length &&  !isNaN(parseInt(id_array[0],10))) {
 			options.state = 'gallery-edit';
 		}
 		return selection;
@@ -146,6 +148,9 @@
 			
 			if ( target.length ) {
 				target.val( values.join(',') ).trigger('change');
+
+				// triggers change in customizer
+				target.keyup();
 			}
 			
 			if ( preview.length ) {
@@ -173,6 +178,8 @@
 		else {
 			$(preview).html("").hide();
 		}
+
+		$(target).keyup();
 	})
 	.on('click', '.wc-widgets-delete-image', function( e ) {
 		e.preventDefault();
@@ -188,5 +195,7 @@
 		if ( preview.length ) {
 			$(preview).html("").hide();
 		}
+
+		$(target).keyup();
 	});
 })(jQuery);

@@ -104,20 +104,6 @@ class WC_Widgets_Pinterest_Widget extends WP_Widget {
 	}
 }
 
-/**
- * WC_Widgets_About_Me_Widget 
- *
- * Beginning structure for about me
- * image. All I really need now is a good clean
- * way to upload image. At the moment, A user
- * has to upload an image through theme options.
- * 
- * I would be better if they could upload the image
- * through this widget.
- * 
- * @uses WP
- * @uses _Widget
- */
 class WC_Widgets_About_Me_Widget extends WP_Widget {
 	function __construct() {
 		$widget_ops = array( 'description' => __('Add and customize your "About Me" information.') );
@@ -134,6 +120,11 @@ class WC_Widgets_About_Me_Widget extends WP_Widget {
 
 		$class = !empty( $instance['style'] ) ? $instance['style'] : 'none';
 
+		$style = array();
+		if ( 'circle' == $class ) {
+			$style[] = 'border-radius:50%';
+		}
+
 
 		$url = !empty( $instance['url'] ) ? esc_url( $instance['url'] ) : '';
 		$image = $instance['image'];
@@ -142,7 +133,7 @@ class WC_Widgets_About_Me_Widget extends WP_Widget {
 			if ( !empty( $url ) )
 				echo '<a class="image-hover" href="'.$url.'">';
 
-			echo '<img class="img-'.$class.'" src="'.$image.'" />';
+			echo '<img class="img-'.$class.'" src="'.$image.'" style="'.implode( ';', $style ).'" />';
 
 			if ( !empty( $url ) )
 				echo '</a>';
@@ -214,18 +205,11 @@ class WC_Widgets_About_Me_Widget extends WP_Widget {
 	}
 }
 
-/**
- * Module Name: Image Widget
- * Module Description: Easily add images to your theme's sidebar.
- * Sort Order: 20
- * First Introduced: 1.2
- */
 class WC_Widgets_Image_Widget extends WP_Widget {
 
 	function __construct() {
 		$widget_ops = array( 'classname' => 'widget_image', 'description' => __('Add and customize your "About Me" information.') );
-		$control_ops = array( 'width' => 400 );
-		parent::__construct( 'image', __('WP Canvas - Image', 'wc_widgets' ), $widget_ops, $control_ops );
+		parent::__construct( 'image', __('WP Canvas - Image', 'wc_widgets' ), $widget_ops );
 	}
 
 	function widget( $args, $instance ) {
@@ -245,10 +229,6 @@ class WC_Widgets_Image_Widget extends WP_Widget {
 				$output .= 'alt="' . esc_attr( $instance['alt_text'] ) .'" ';
 			if ( '' != $instance['img_title'] )
 				$output .= 'title="' . esc_attr( $instance['img_title'] ) .'" ';
-			//if ( '' != $instance['img_width'] )
-				//$output .= 'width="' . esc_attr( $instance['img_width'] ) .'" ';
-			//if ( '' != $instance['img_height'] )
-				//$output .= 'height="' . esc_attr( $instance['img_height'] ) .'" ';
 			$output .= '/>';
 
 			if ( '' != $instance['link'] )
@@ -276,92 +256,74 @@ class WC_Widgets_Image_Widget extends WP_Widget {
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
-		$instance['title']		= strip_tags( $new_instance['title'] );
-		$instance['img_url']	= esc_url( $new_instance['img_url'], null, 'display' );
-		$instance['alt_text']	= strip_tags( $new_instance['alt_text'] );
-		$instance['img_title']	= strip_tags( $new_instance['img_title'] );
-		$instance['caption']	= $new_instance['caption'];
-		//$instance['img_width']  = absint( $new_instance['img_width'] );
-		//$instance['img_height'] = absint( $new_instance['img_height'] );
-		$instance['link']		= esc_url( $new_instance['link'], null, 'display' );
+		$instance['title'] = strip_tags( $new_instance['title'] );
+		$instance['img_url'] = esc_url( $new_instance['img_url'], null, 'display' );
+		$instance['alt_text'] = strip_tags( $new_instance['alt_text'] );
+		$instance['img_title'] = strip_tags( $new_instance['img_title'] );
+		$instance['caption'] = $new_instance['caption'];
+		$instance['link'] = esc_url( $new_instance['link'], null, 'display' );
 
 		return $instance;
 	}
 
 	function form( $instance ) {
-	wp_enqueue_media();
- 
-		// Defaults
-		$instance = wp_parse_args( (array) $instance, array( 'title' => '', 'img_url' => '', 'alt_text' => '', 'img_title' => '', 'caption' => '', 'img_width' => '', 'img_height' => '', 'link' => '' ) );
+		$instance = wp_parse_args( (array) $instance,
+			array(
+				'title' => '',
+				'img_url' => '',
+				'alt_text' => '',
+				'img_title' => '',
+				'caption' => '',
+				'img_width' => '',
+				'img_height' => '',
+				'link' => ''
+			));
 
-		$title		= esc_attr( $instance['title'] );
-		$img_url	= esc_url( $instance['img_url'], null, 'display' );
+		$title = esc_attr( $instance['title'] );
+		$img_url = esc_url( $instance['img_url'], null, 'display' );
 		$imagestyle = '';
+
 		if ( empty( $img_url ) )
 			$imagestyle = ' style="display:none"';
 
-		$alt_text	= esc_attr( $instance['alt_text'] );
-		$img_title	= esc_attr( $instance['img_title'] );
-		$caption	= esc_attr( $instance['caption'] );
-		//$img_width  = esc_attr( $instance['img_width'] );
-		//$img_height = esc_attr( $instance['img_height'] );
-
-		/*if ( !empty( $instance['img_url'] ) ) {
-			// Download the url to a local temp file and then process it with getimagesize so we can filter out domains which are blocking us
-			$tmp_file = download_url( $instance['img_url'], 30 );
-			if ( ! is_wp_error( $tmp_file ) ) {
-				$size = getimagesize( $tmp_file );
-
-				if ( '' == $instance['img_width'] ) {
-					$width = $size[0];
-					$img_width = $width;
-				} else {
-					$img_width = absint( $instance['img_width'] );
-				}
-
-				if ( '' == $instance['img_height'] ) {
-					$height = $size[1];
-					$img_height = $height;
-				} else {
-					$img_height = absint( $instance['img_height'] );
-				}
-
-				unlink( $tmp_file );
-			}
-		}*/
+		$alt_text = esc_attr( $instance['alt_text'] );
+		$img_title = esc_attr( $instance['img_title'] );
+		$caption = esc_attr( $instance['caption'] );
 
 		$link = esc_url( $instance['link'], null, 'display' );
 
-		echo '<p><label for="' . $this->get_field_id( 'title' ) . '">' . esc_html__( 'Widget title:', 'wc_widgets' ) . '
-			<input class="widefat" id="' . $this->get_field_id( 'title' ) . '" name="' . $this->get_field_name( 'title' ) . '" type="text" value="' . $title . '" />
-			</label></p>
-			<div class="wc-widgets-image-field">
-				<input class="widefat" id="'.$this->get_field_id( 'img_url' ).'" name="'.$this->get_field_name( 'img_url' ).'" type="text" value="'.$img_url.'" />
-				<a class="wc-widgets-image-upload button inline-button" data-target="#'.$this->get_field_id( 'img_url' ).'" data-preview=".wc-widgets-preview-image" data-frame="select" data-state="wc_widgets_insert_single" data-fetch="url" data-title="Insert Image" data-button="Insert" data-class="media-frame wc-widgets-custom-uploader" title="Add Media">Add Media</a>
-				<a class="button wc-widgets-delete-image" data-target="#'.$this->get_field_id( 'img_url' ).'" data-preview=".wc-widgets-preview-image">Delete</a>
-				<div class="wc-widgets-preview-image"'.$imagestyle.'><img src="'.esc_attr($img_url).'" /></div>
-			</div>
-			<p><label for="' . $this->get_field_id( 'alt_text' ) . '">' . esc_html__( 'Alternate text:', 'wc_widgets' ) . '  <a href="http://support.wordpress.com/widgets/image-widget/#image-widget-alt-text" target="_blank">( ? )</a>
-			<input class="widefat" id="' . $this->get_field_id( 'alt_text' ) . '" name="' . $this->get_field_name( 'alt_text' ) . '" type="text" value="' . $alt_text . '" />
-			</label></p>
-			<p><label for="' . $this->get_field_id( 'img_title' ) . '">' .	esc_html__( 'Image title:', 'wc_widgets' ) . ' <a href="http://support.wordpress.com/widgets/image-widget/#image-widget-title" target="_blank">( ? )</a>
-			<input class="widefat" id="' . $this->get_field_id( 'img_title' ) . '" name="' . $this->get_field_name( 'img_title' ) . '" type="text" value="' . $img_title . '" />
-			</label></p>
-			<p><label for="' . $this->get_field_id( 'caption' ) . '">' . esc_html__( 'Caption:', 'wc_widgets' ) . ' <a href="http://support.wordpress.com/widgets/image-widget/#image-widget-caption" target="_blank">( ? )</a>
-			<input class="widefat" id="' . $this->get_field_id( 'caption' ) . '" name="' . $this->get_field_name( 'caption' ) . '" type="text" value="' . $caption . '" />
-			</label></p>';
-
-		/*echo '<p><label for="' .	$this->get_field_id( 'img_width' ) . '">' . esc_html__( 'Width:', 'wc_widgets' ) . '
-		<input size="3" id="' .  $this->get_field_id( 'img_width' ) . '" name="' . $this->get_field_name( 'img_width' ) . '" type="text" value="' .  $img_width . '" />
-		</label>
-		<label for="' . $this->get_field_id( 'img_height' ) . '">' . esc_html__( 'Height:', 'wc_widgets' ) . '
-		<input size="3" id="' . $this->get_field_id( 'img_height' ) . '" name="' . $this->get_field_name( 'img_height' ) . '" type="text" value="' . $img_height . '" />
-		</label><br />';*/
-		//echo '<small>' . esc_html__( "If empty, we will attempt to determine the image size.", 'wc_widgets' ) . '</small></p>';
-
-		echo '<p><label for="' . $this->get_field_id( 'link' ) . '">' . esc_html__( 'Link URL (when the image is clicked):', 'wc_widgets' ) . '
-		<input class="widefat" id="' . $this->get_field_id( 'link' ) . '" name="' . $this->get_field_name( 'link' ) . '" type="text" value="' . $link . '" />
-		</label></p>';
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php echo esc_html__( 'Widget title:', 'wc_widgets' ); ?>
+				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" />
+			</label>
+		</p>
+		<div class="wc-widgets-image-field">
+			<input class="widefat" id="<?php echo $this->get_field_id( 'img_url' ); ?>" name="<?php echo $this->get_field_name( 'img_url' ); ?>" type="text" value="<?php echo $img_url; ?>" />
+			<a class="wc-widgets-image-upload button inline-button" data-target="#<?php echo $this->get_field_id( 'img_url' ); ?>" data-preview=".wc-widgets-preview-image" data-frame="select" data-state="wc_widgets_insert_single" data-fetch="url" data-title="Insert Image" data-button="Insert" data-class="media-frame wc-widgets-custom-uploader" title="Add Media">Add Media</a>
+			<a class="button wc-widgets-delete-image" data-target="#<?php echo $this->get_field_id( 'img_url' ); ?>" data-preview=".wc-widgets-preview-image">Delete</a>
+			<div class="wc-widgets-preview-image"<?php echo $imagestyle; ?>><img src="<?php echo esc_attr( $img_url ); ?>" /></div>
+		</div>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'alt_text' ); ?>"><?php echo esc_html__( 'Alternate text:', 'wc_widgets' ); ?>
+				<input class="widefat" id="<?php echo $this->get_field_id( 'alt_text' ); ?>" name="<?php echo $this->get_field_name( 'alt_text' ); ?>" type="text" value="<?php echo $alt_text; ?>" />
+			</label>
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'img_title' ); ?>"><?php echo esc_html__( 'Image title:', 'wc_widgets' ); ?>
+				<input class="widefat" id="<?php echo $this->get_field_id( 'img_title' ); ?>" name="<?php echo $this->get_field_name( 'img_title' ); ?>" type="text" value="<?php echo $img_title; ?>" />
+			</label>
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'caption' ); ?>"><?php echo esc_html__( 'Caption:', 'wc_widgets' ); ?>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'caption' ); ?>" name="<?php echo $this->get_field_name( 'caption' ); ?>" type="text" value="<?php echo $caption; ?>" />
+			</label>
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php echo esc_html__( 'Link URL (when the image is clicked):', 'wc_widgets' ); ?>
+				<input class="widefat" id="<?php echo $this->get_field_id( 'link' ); ?>" name="<?php echo $this->get_field_name( 'link' ); ?>" type="text" value="<?php echo $link; ?>" />
+			</label>
+		</p>
+		<?php
 	}
-
-} //Class WC_Widgets_Image_Widget
+}
