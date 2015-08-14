@@ -53,9 +53,9 @@ class WC_Widgets_Pinterest_Widget extends WP_Widget {
 			echo $args['before_title'] . $instance['title'] . $args['after_title'];
 
 		if ( ! empty( $instance['width'] ) && is_numeric( $instance['width'] ) )
-			$width = (int) $instance['width'];
+			$width = ( (int) $instance['width'] - 20 );
 		else
-			$width = 300;
+			$width = 280;
 
 		if ( ! empty( $instance['height'] ) && is_numeric( $instance['height'] ) )
 			$height = (int) $instance['height'];
