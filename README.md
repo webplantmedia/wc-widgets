@@ -4,7 +4,7 @@
 **Donate link:** http://webplantmedia.com/donate/
 **Tags:** wordpress canvas widgets, pinterest widget, about me widget, image widget  
 **Requires at least:** 3.7  
-**Tested up to:** 3.7.1  
+**Tested up to:** 4.3
 **Stable tag:** trunk  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
@@ -41,6 +41,36 @@ Yes, I do accept donations.  If you want to buy me a sandwich or something, you 
 Go to your widget Dashboard and look for widgets begining with title 'WordPress Canvas'.
 
 ## Changelog ##
+
+### Version 1.6
+
+* Include side margin as part of pinterest width
+* Code cleanup
+* Updated class to support PHP 7
+
+### Version 1.5
+
+* Fixed bug with Add Image button not working on About Me Widget
+
+### Version 1.4
+
+* Fixed bug when trying to delete image
+
+### Version 1.3
+
+* Updated Readme info
+
+### Version 1.2
+
+* Allow html in caption or description
+
+### Version 1.1
+
+* Plugin released.  Everything is new!
+
+* Include side margin as part of pinterest width
+* Code cleanup
+* Updated class to support PHP 7
 
 ### Version 1.5
 
