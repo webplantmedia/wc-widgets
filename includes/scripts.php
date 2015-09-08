@@ -13,7 +13,8 @@ if( !function_exists ('wc_widgets_scripts') ) :
 	function wc_widgets_scripts() {
 		$ver = WC_WIDGETS_VERSION;
 
-		wp_register_script( 'pinterest', '//assets.pinterest.com/js/pinit.js', array(), false, true);
+		wp_deregister_script( 'pinit' );
+		wp_register_script( 'pinit', '//assets.pinterest.com/js/pinit.js', array(), false, true);
 	}
 	add_action('wp_enqueue_scripts', 'wc_widgets_scripts');
 endif;

@@ -43,7 +43,7 @@ class WC_Widgets_Pinterest_Widget extends WP_Widget {
 	}
 
 	function widget($args, $instance) {
-		wp_enqueue_script( 'pinterest' );
+		wp_enqueue_script( 'pinit' );
 
 		$instance['title'] = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
 
