@@ -42,6 +42,10 @@ Go to your widget Dashboard and look for widgets begining with title 'WordPress 
 
 == Changelog ==
 
+### Version 1.7
+
+* changed pinterest script handle to pinit
+
 ### Version 1.6
 
 * Include side margin as part of pinterest width
